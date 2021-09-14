@@ -12,8 +12,8 @@ Uso do Git
 **********************
 Comandos GIT</br>
 ```diff
-> git init                          => Inicia o git na pasta</br>
--> git add -A                        => Adiciona novos arquivos no monitor do GIT ***</br>
+> git init                          => Inicia o git na pasta
+-> git add -A                        => Adiciona novos arquivos no monitor do GIT ***
 -> git status                        => Mostra alterações antes de fazer o commit ***</br>
 > git commit -m "Comentario"        => Sobe os arquivos no GIT ***</br>
 > git commit -am "Comentario"       => Sobe os arquivos no GIT</br>
