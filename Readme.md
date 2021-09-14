@@ -19,3 +19,5 @@ Na pasta do projeto
 > git diff --name-only              => Mostra o nome dos arquivos alterados
 > git diff (nome do arquivo)        => Mostra as alteraçõe em um arquivo específico
 > git checkout HEAD -- (n. arquivo) => Volta a ultima alteração do aquivo específico
+> git remote add origin https://github.com/Francis050981/Trabalho_Final.git => Disponibilizar arquivos para o github
+> git remote -v                     => Duas opções (fetch) trazer do github, (Push) subir para github
