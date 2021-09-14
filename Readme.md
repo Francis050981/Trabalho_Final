@@ -2,10 +2,10 @@
 Start do Projeto
 **********************
 
-Github: https://github.com/Francis050981/Trabalho_Final
-Medium: https://medium.com/@franccccis1981/trabalho-final-b7ef42934e5
-Figma : https://www.figma.com/file/khTkzdaaiLkpA2xpKjQlIz/Untitled?node-id=0%3A1
-Trello: https://trello.com/b/t6OpuTHi/mass-mailing
+Github: https://github.com/Francis050981/Trabalho_Final</br>
+Medium: https://medium.com/@franccccis1981/trabalho-final-b7ef42934e5</br>
+Figma : https://www.figma.com/file/khTkzdaaiLkpA2xpKjQlIz/Untitled?node-id=0%3A1</br>
+Trello: https://trello.com/b/t6OpuTHi/mass-mailing</br>
 
 **********************
 Uso do Git
