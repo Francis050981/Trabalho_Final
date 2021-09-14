@@ -27,6 +27,6 @@ Comandos GIT</br>
 > git diff --name-only              => Mostra o nome dos arquivos alterados</br>
 > git diff (nome do arquivo)        => Mostra as alteraçõe em um arquivo específico</br>
 > git checkout HEAD -- (n. arquivo) => Volta a ultima alteração do aquivo específico</br>
-> git remote add origin https://github.com/Francis050981/Trabalho_Final.git => Disponibilizar arquivos para o github</br>
+> git remote add origin https://github.com/Francis050981/Trabalho_Final.git => Disponibilizar arquivos para github</br>
 > git remote -v                     => Duas opções (fetch) trazer do github, (Push) subir para github</br>
 > git push -u origin master         => Sobe os arquivos adicionados para o github ***</br>
