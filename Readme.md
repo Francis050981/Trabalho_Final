@@ -9,8 +9,7 @@ Trello: https://trello.com/b/t6OpuTHi/mass-mailing</br>
 
 **********************
 Uso do Git
-**********************
-Comandos GIT</br>
+
 ```diff
 > git init                          => Inicia o git na pasta
 -> git add -A                        => Adiciona novos arquivos no monitor do GIT ***
