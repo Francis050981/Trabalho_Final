@@ -11,9 +11,10 @@ Trello: https://trello.com/b/t6OpuTHi/mass-mailing</br>
 Uso do Git
 **********************
 Comandos GIT</br>
+```diff
 > git init                          => Inicia o git na pasta</br>
-> git add -A                        => Adiciona novos arquivos no monitor do GIT ***</br>
-> git status                        => Mostra alterações antes de fazer o commit ***</br>
+-> git add -A                        => Adiciona novos arquivos no monitor do GIT ***</br>
+-> git status                        => Mostra alterações antes de fazer o commit ***</br>
 > git commit -m "Comentario"        => Sobe os arquivos no GIT ***</br>
 > git commit -am "Comentario"       => Sobe os arquivos no GIT</br>
 > git log                           => Verifica as alterações</br>
@@ -29,4 +30,5 @@ Comandos GIT</br>
 > git checkout HEAD -- (n. arquivo) => Volta a ultima alteração do aquivo específico</br>
 > git remote add origin https://github.com/Francis050981/Trabalho_Final.git => Disponibilizar arquivos para github</br>
 > git remote -v                     => Duas opções (fetch) trazer do github, (Push) subir para github</br>
-> git push -u origin master         => Sobe os arquivos adicionados para o github ***</br>
+-> git push -u origin master         => Sobe os arquivos adicionados para o github ***</br>
+```
