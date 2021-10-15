@@ -1,0 +1,10 @@
+@layout('layouts/master')
+@section('content')
+    <div class="container">
+        <div class="text-center posicao">
+            @if(flashMessage('successmessage'))
+                <span id="alerta" class="alert alert-success p-1 ">{{ flashMessage('successmessage') }}</span>
+            @endif
+        </div>
+    </div>
+@endsection

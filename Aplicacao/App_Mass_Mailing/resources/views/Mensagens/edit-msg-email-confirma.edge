@@ -1,0 +1,41 @@
+@layout('layouts/master')
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3 offset-md-3">
+            <div class="float-right"><a class="x2" href="/">x</a></div>
+            <div class="clear-fix"></div>
+            <form id="Formulario01"> 
+                {{ csrfField() }}  
+                <div class="text-center">
+                <div class="form-group"><span class="tituloTela">
+                    <img src="/imgEmail.png" alt="Imagem Email">
+                    Você quer realmente Deletar a mensagem?
+                </span></div>
+                </div>
+                <div class="text-center">
+
+                <a href="{{route('visualiza.msg-email')}}" class="btn btn-dark btn-lag btn-sm">Não</a>
+
+                    <!--<a class="a2" href="{{route('visualiza.msg-email')}}">Voltar</a>-->
+                    <!--<a href="/edit-msg-email/{{Mensagem.id}}" class="btn btn-info btn-lag">Não</a>-->
+                    <!--<a href="{{route('visualiza.msg-whats')}}" class="btn btn-info btn-lag">Não</a>-->
+
+                <a href="/delete-msg-email/{{Mensagem.id}}" class="btn btn-dark btn-lag btn-sm">Sim</a>
+                <div class="text-center">
+                <!--
+                @each(mensagem in Mensagens)
+                <table>
+
+                    <tr>
+                        <td><a class="x2" href="/edit-msg-email/{{mensagem.id}}"><p class="">{{mensagem.titulo_msg_email}}</p></a></td>
+                    </tr>
+                </table>
+                @endeach 
+                -->
+            </form>
+            <!--<div class="form-group g2"><a class="a2" href="{{route('create.msg-email')}}">Voltar</a></div>-->
+        </div>
+    </div>
+</div>
+@endsection

@@ -1,0 +1,142 @@
+@layout('layouts/master')
+@section('content')
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+      <div class="col-md-6 shadow bg-white mt-5 rounded p-3">
+        <div class="x2"><a href="/">x</a></div>
+        <div class="form-group tituloTela">Crie sua mensagem</div>
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <img src="/imgEmail.png" alt="Imagem Email">
+                <button class="btn x2 btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  Email
+                </button>
+              </h5>
+              
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+
+                <div class="clear-fix" id="divEmail">
+                  <form method="POST" action="{{route('store.msg-email')}}" onload="Init ()">
+                    {{ csrfField() }}
+
+                    <div class="form-group">    
+                      <!--<div><span id="demo10"></span></div>-->                 
+                        <label for="titulo_msg_email">Defina um título para a Mensagem</label>
+                        <input type="text" name="titulo_msg_email" id="titulo_msg_email" onfocus= apaga_msg() class="form-control" id="msg-email" placeholder="Titulo aqui...">
+                        <span id="demo"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="msg_email">Descreva o corpo da Mensagem.</label>
+                        <textarea type="text" rows="5"  name='msg_email' id="msg_email" onfocus= apaga_msg() class="form-control" id="msg-email" placeholder="Defina a mensagem de envio..."></textarea>
+                        <span id="demo2"></span>
+                    </div>
+                    <div class="form-group g2">
+                      <a class="a2" href="{{route('visualiza.msg-email')}}" data-toggle="tooltip" title="Editar mensagens arquivadas">
+                        <img class="tamanhoIconeAcao"src="/edit.png" alt="Imagem Editar">
+                      </a>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-dark btn-sm" onclick= valida_form()>Salvar nova Mensagem</button>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                  <img src="/imgWhats.png" alt="Imagem Email">
+                  <button class="btn x2 btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    WhatsApp
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+
+                  <div class="clear-fix" id="divEmail">
+                  <form method="POST" action="{{route('store.msg-whats')}}" onload="Init ()">
+                    {{ csrfField() }}
+                    <div class="form-group">                        
+                        <label for="titulo_msg_whats">Defina um título para a Mensagem</label>
+                        <input type="text" name="titulo_msg_whats" id="titulo_msg_whats" onfocus= apaga_msg() class="form-control" id="titulo-msg-whats" placeholder="Titulo aqui...">
+                        <span id="demo3"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="msg_txt_whats">Descreva o corpo da Mensagem.</label>
+                        <textarea type="text" rows="5"  name='msg_txt_whats' id="msg_txt_whats" onfocus= apaga_msg() class="form-control" id="msg-txt-whats" placeholder="Defina a mensagem de envio..."></textarea>
+                        <span id="demo4"></span>
+                    </div>
+                    <div class="form-group g2">
+                      <a class="a2" href="{{route('visualiza.msg-whats')}}" data-toggle="tooltip" title="Editar mensagens arquivadas">
+                        <img class="tamanhoIconeAcao"src="/edit.png" alt="Imagem Editar">
+                      </a>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class= "btn btn-dark btn-sm" onclick= valida_form2()>Salvar nova Mensagem</button>
+                    </div>
+                  </form>
+                </div>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
+
+<script type="text/javascript" language="javascript">
+
+function valida_form (){
+  if(document.getElementById("titulo_msg_email").value.length < 1){
+  event.preventDefault()
+  document.getElementById("demo").innerHTML= "O título é obrigatorio!";
+  document.getElementById ("demo").style.color = '#FF0000';
+  }else{
+      if(document.getElementById("msg_email").value.length < 1){
+      event.preventDefault()
+      document.getElementById("demo2").innerHTML= "A mensagem é obrigatoria!";
+      document.getElementById ("demo2").style.color = '#FF0000';
+      }
+  }
+  return false;
+}
+
+function valida_form2 (){
+  if(document.getElementById("titulo_msg_whats").value.length < 1){
+  event.preventDefault()
+  document.getElementById("demo3").innerHTML= "O título é obrigatorio!";
+  document.getElementById ("demo3").style.color = '#FF0000';
+  }else{
+      if(document.getElementById("msg_txt_whats").value.length < 1){
+      event.preventDefault()
+      document.getElementById("demo4").innerHTML= "A mensagem é obrigatoria!";
+      document.getElementById ("demo4").style.color = '#FF0000';
+      }
+  }
+  return false;
+}
+
+
+
+
+function apaga_msg (){
+    document.getElementById("demo").innerHTML= " ";
+    document.getElementById("demo2").innerHTML= " ";
+    document.getElementById("demo3").innerHTML= " ";
+    document.getElementById("demo4").innerHTML= " ";
+    /*document.getElementById("demo10").innerHTML= "Aqui!";*/
+    return false;
+}
+
+</script>
+@endsection
+

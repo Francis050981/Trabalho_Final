@@ -1,0 +1,34 @@
+@layout('layouts/master')
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3 offset-md-3">
+            <div class="float-right"><a class="x2" href="/">x</a></div>
+            <div class="clear-fix"></div>
+            <form id="Formulario01"> 
+            <span id="demo"></span>
+                {{ csrfField() }}  
+                <table id="tabela">
+                    <thead>
+                        <tr class="cabecalho">
+                        <th id="clique">
+                            <img src="/imgWhats.png" alt="Imagem Email">
+                            Mensagens: Títulos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @each(mensagem in Mensagens)
+                        <tr>
+                        <td id="td1"><a class="x2" href="/edit-msg-whats/{{mensagem.id}}"><p>{{mensagem.titulo_msg_whats}}</p></a></td>
+                        </tr>
+                        @endeach 
+                    </tbody>
+                </table>
+            </form>
+            <div class="form-group g2"><a href="{{route('create.msg-email')}}" data-toggle="tooltip" title="Voltar">
+                <img class="tamanhoIconeAcao"src="/voltar.png" alt="Imagem voltar">
+            </a></div>
+        </div>
+    </div>
+</div>
+@endsection

@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-dark text-white body_navbar">
+    <!--<a class="navbar-brand" >LOGO</a>-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="li2 x2" href="/">
+                <img class="tamanhoLogo"src="/imgWhatEmail.png">
+                Mass Mailing
+                </a>    
+            </li>
+        </ul>
+        <!--
+        <ul class="navbar-nav">
+            <li class="nav-item active ">
+                <a class="btn li2" href="/">Home</a>
+            </li>
+        </ul>
+        -->
+    </div>
+    <div class="navbar-right" id="navbarNav">
+        @loggedIn
+            <ul class="navbar-nav">
+                <li class="bt2">
+                    <div class="text-right">
+                            <a href="{{route('create.quote')}}" class="btn btn-light btn-larg-nav btn-sm">Upload</a>
+                    </div>
+                </li>
+                <li class="bt2">
+                    <div class="text-right">
+                            <a href="{{route('create.msg-email')}}" class="btn btn-light btn-larg-nav btn-sm">Mensagens</a>
+                            <!--<a href="{{route('create.msg-email')}}" class="btn btn-outline-light btn-sm">Mensagens</a>-->
+                    </div>
+                </li>
+                <li class="bt2">
+                    <div class="text-right">
+                            <a href="{{route('create.quote')}}" class="btn btn-light btn-larg-nav btn-sm">Envio WhatsApp</a>
+                    </div>
+                </li>
+                <li class="bt2">
+                    <div class="text-right">
+                            <a href="{{route('envia.envia-email')}}" class="btn btn-light btn-larg-nav btn-sm">Envio Email</a>
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ auth.user.username}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <form method="POST" action="{{route('logout')}}">
+                            {{ csrfField() }}
+                              <button  type="submit" class="dropdown-item btnexc" href="">Sair</button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        @else
+            <ul class="navbar-nav">
+                <li class="nav-item active pr-2">
+                    <!--<a href="{{route('login.create')}}" class="btn btn-outline-danger">-->
+                    <a href="{{route('login.create')}}" class="btn btn-light btn-sm">
+                      Faça Login
+                    </a>
+                </li>
+                <!--
+                <li class="nav-item active pr-2">
+                    <a href="{{route('register.create')}}" class="btn btn-outline-primary">
+                    <a href="{{route('register.create')}}" class="btn btn-light">
+                        Registrar-se
+                    </a>
+                </li>
+                -->
+            </ul>
+        @endloggedIn
+    </div>
+</nav>

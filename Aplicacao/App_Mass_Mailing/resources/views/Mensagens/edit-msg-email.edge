@@ -1,0 +1,46 @@
+@layout('layouts/master')
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3 offset-md-3">
+            <div class="float-right">
+                <a class="x2" href="/">x</a>
+            </div>
+            <div class="clear-fix"></div>
+            <form method="POST" action="/update-msg-email/{{Mensagem.id}}">
+                {{ csrfField() }}
+
+                <!--
+                <select class="select" class="form-control" name="category_id" id="selectid" required onchange=atualizaid()>
+                    <option selected disabled value="">Select Category</option>
+                    @each( mensagem in Mensagens)
+                        <option value="{{mensagem.id}}" >{{mensagem.titulo_msg_email}}</option>
+                    @endeach
+                </select>
+                -->
+
+                <div class="form-group">
+                    <span class="tituloTela">
+                        <img src="/imgEmail.png" alt="Imagem Email">
+                        Título: {{Mensagem.titulo_msg_email}}</span>
+                </div>
+                <div class="form-group">
+                    <label for="msg_email">Edite sua mensagem:</label>
+                    <textarea type="text" rows="5"  name='msg_email' id="msg_email" class="form-control" id="msg-email" placeholder="Edite a mensagem de envio...">{{Mensagem.msg_email}}</textarea>
+                </div>
+               
+                <div class="text-center">
+                    <button type="submit" class="btn btn-dark btn-lag btn-sm">Atualizar</button>
+                    <!--<a href="/delete-msg-email/{{Mensagem.id}}" class="btn btn-danger btn-lag">Excluir</a>-->
+                    <a href="/edit-msg-email-confirma/{{Mensagem.id}}" class="btn btn-dark btn-lag btn-sm">Excluir</a>
+                </div>
+            </form>
+            <div class="form-group g2">
+                <a class="a2" href="{{route('visualiza.msg-email')}}" data-toggle="tooltip" title="Voltar">
+                    <img class="tamanhoIconeAcao"src="/voltar.png" alt="Imagem voltar">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

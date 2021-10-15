@@ -1,0 +1,258 @@
+@layout('layouts/master')
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3 offset-md-3">
+            <div class="float-right"><a class="x2" href="/">x</a></div>
+            <div class="clear-fix"></div>
+            <!--<form id="Formulario10" action="{{ route('envia.envia-email') }}" method="post">-->
+            <form method="POST" action="{{route('envia.send')}}" onfocus = radio() oninput= radio()>
+                {{ csrfField() }}  
+                <div class="">
+                <div class="form-group"><span class="tituloTela">
+                    <img src="/imgEmail.png" alt="Imagem Email">
+                    Envie seu e-mail</span></div>
+                </div>
+                <div class="form-group" name="radios">
+                    <p>Escolha seu servidor de envio: </p>
+                    <div class="inline">
+                      <div class="form-check">
+                        <span id="demo"></span>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="op01" checked>
+                        <label class="form-check-label" for="op01">
+                          Gmail
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="op02">
+                        <label class="form-check-label" for="op02">
+                          Yahoo
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="op03">
+                        <label class="form-check-label" for="op03">
+                          Hotmail
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="op04">
+                        <label class="form-check-label" for="op04">
+                          Bol
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="op05">
+                        <label class="form-check-label" for="op05">
+                          Outro
+                        </label>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="form-group">                        
+                        <label for="remetente">E-mail (Remetente):</label>
+                        <input type="text" name="remetente" value = "{{ auth.user.email}}" id="remetente" class="form-control" placeholder="Digite o e-mail de envio">
+                        <span id="demo3"></span>
+                    </div>
+                    <div class="form-group">                        
+                        <label for="senha">Senha e-mail:</label>
+                        <div class="inline">
+                        <!--<input type="text" name="senhaoculta" id="senhaoculta" value = "{{ auth.user.password}}" class="form-control" placeholder="Digite o e-mail de envio">-->
+                        <input type="password" name="senha" id="senha" class="form-control" placeholder="Digite a senha">
+                        <img id="olho" src="/olhoSenha.png">
+                        </div>
+                        <span id="demo3"></span>
+                    </div>
+                    <div class="form-group">                        
+                        <label for="smtp">Servidor SMTP:</label>
+                        <input type="text" name="smtp" id="smtp" class="form-control" placeholder="Digite o servidor SMTP">
+                        <!--<input type="text" name="titulo_msg_whats" id="titulo_msg_whats" onfocus= apaga_msg() class="form-control" id="titulo-msg-whats" placeholder="Titulo aqui...">-->
+                        <span id="demo3"></span>
+                    </div>
+                    <div class="form-group">                        
+                        <label for="porta">Porta (Servidor):</label>
+                        <input type="text" name="porta" id="porta" class="form-control" placeholder="Digite o n da porta do servidor">
+                        <span id="demo3"></span>
+                    </div>
+                    <div class="form-group">                        
+                        <label for="destinatario">Destinatário (E-mail):</label>
+                        <input type="text" name="destinatario" id="destinatario" class="form-control" placeholder="Digite e-mail do destinatário">
+                        <span id="demo3"></span>
+                    </div>
+                    <div class="form-group">                        
+                        <label for="retornarPara">Responder para (E-mail de retorno):</label>
+                        <input type="text" name="retornarPara"  id="retornarPara" class="form-control" placeholder="Digite e-mail de retorno">
+                        <span id="demo3"></span>
+                    </div>
+
+
+                    <!--
+                    <div class="form-group">                        
+                      <label for="buscaMsg">Busca Mensagem arquivada:</label>
+                      <input type="text" name="buscaMsg" id="buscaMsg" class="form-control">
+                      <span id="demo3"></span>
+                    </div>
+                    -->
+
+                    <!--
+                    <select class="select" class="form-control" name="category_id" id="selectid" required onchange=atualizaid()>
+                      <option selected disabled value="">Select Category</option>
+                      @each( mensagem in Mensagens)
+                          <option value="{{mensagem.id}}" >{{mensagem.titulo_msg_email}}</option>
+                      @endeach
+                    </select>
+                  -->
+
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Use um modelo de mensagem salvo:</label>
+                      <select class="form-control" id="exampleFormControlSelect1" oninput= atualizacampo()>
+                        <option hidden>Selecione...</option>
+                        <option>
+                          @each( mensagem in Mensagens)
+                            <option id="option" value="{{mensagem.msg_email}}" >{{mensagem.titulo_msg_email}}</option>
+                          @endeach
+                        </option>
+                      </select>
+                    </div>
+                    <div>
+
+                   <span id="demo100"></span>
+
+
+                   <!--<span  value="{{mensagem.id}}" >{{mensagem.msg_email}}</span>-->
+
+                  </div>
+                    
+
+
+    
+
+                    <span id="demo4"></span>
+
+
+                    <div class="form-group">                        
+                        <label for="assunto">Assunto:</label>
+                        <input type="text" name="assunto" id="assunto" class="form-control" placeholder="Digite o assunto">
+                        <span id="demo10"></span>
+                    </div>       
+
+                    
+
+                      <div class="form-group">
+                          <label for="corpo">Mensagem:</label>
+                          <textarea type="text" rows="5" name="corpo" id="corpo"  class="form-control" placeholder="Defina a mensagem para o envio..."></textarea>
+                          <span id="demo4"></span>
+                      </div>
+
+                    
+                    <div class="text-center">
+                    <button type="submit" class= "btn btn-dark btn-lag btn-sm">Enviar</button>
+                    <div class="text-center">
+                    <!--
+                    @each(mensagem in Mensagens)
+                    <table>
+
+                        <tr>
+                            <td><a class="x2" href="/edit-msg-email/{{mensagem.id}}"><p class="">{{mensagem.titulo_msg_email}}</p></a></td>
+                        </tr>
+                    </table>
+                    @endeach 
+                    -->
+            </form>
+            <!--<div class="form-group g2"><a class="a2" href="{{route('create.msg-email')}}">Voltar</a></div>-->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" language="javascript">
+
+function radio(){
+    if (document.getElementById("op01").checked){
+        document.getElementById("smtp").value = "smtp.gmail.com";
+        document.getElementById("porta").value = "587";
+    }
+    else{
+        if (document.getElementById("op02").checked){
+            document.getElementById("smtp").value = "smtp.mail.yahoo.com";
+            document.getElementById("porta").value = "465";
+        }
+        else{
+          if (document.getElementById("op03").checked){
+            document.getElementById("smtp").value = "smtp.live.com";
+            document.getElementById("porta").value = "465";
+
+          }
+          else{
+            if((document.getElementById("op04").checked)){
+              document.getElementById("smtp").value = "smtps.bol.com.br";
+              document.getElementById("porta").value = "587";
+            }
+            else{
+              document.getElementById("smtp").value = "";
+              document.getElementById("porta").value = "";
+              document.getElementById("smtp").focus();
+            }
+          }
+        }
+    }
+    return false;
+}
+
+window.onload = function(){
+    radio();
+    document.getElementById("assunto").value = "";
+    
+}
+
+
+var senha = $('#senha');
+var olho= $("#olho");
+
+//olho.mousedown(function() {
+olho.mouseover(function() {
+  senha.attr("type", "text");
+});
+
+//olho.mouseup(function() {
+olho.mouseup(function() {
+  senha.attr("type", "password");
+});
+// para evitar o problema de arrastar a imagem e a senha continuar exposta, 
+//citada pelo nosso amigo nos comentários
+$( "#olho" ).mouseout(function() { 
+  $("#senha").attr("type", "password");
+});
+
+//#####################################
+
+document.getElementById("exampleFormControlSelect1").remove(1);
+document.getElementById("exampleFormControlSelect1").selectedIndex = 0;
+
+
+function ordenarSelect(id_componente)
+  {
+    var selectToSort = jQuery('#' + id_componente);
+    var optionActual = selectToSort.val();
+    selectToSort.html(selectToSort.children('option').sort(function (a, b) {
+      return a.text === b.text ? 0 : a.text < b.text ? -1 : 1;
+    })).val(optionActual);
+  }
+  $(document).ready(function () {
+    ordenarSelect('exampleFormControlSelect1');
+  });
+
+  function atualizacampo(){
+    //var passavalor = document.getElementById("exampleFormControlSelect1").selected.innerText;
+    
+    var select = document.getElementById('exampleFormControlSelect1');
+	  var text = select.options[select.selectedIndex].text;
+    document.getElementById("assunto").value = text;
+
+    var value = select.options[select.selectedIndex].value;
+    //document.getElementById("demo100").innerHTML = value;
+    document.getElementById("corpo").innerHTML = value;
+    return false;
+  }
+
+</script>
+@endsection

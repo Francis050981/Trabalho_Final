@@ -1,0 +1,33 @@
+@layout('layouts/master')
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3">
+            <div class="float-right">
+                <a class="x2" href="/">x</a>
+            </div>
+            <div class="clear-fix"></div>
+            <div class="form-group"></div>
+            <p>Página em manutenção</p>
+            <img src="/manutencao.png" alt="Imagem Email">
+
+
+            <!--
+                <form method="POST" action="{{route('store.quote')}}">
+                    {{ csrfField() }}
+                    <div class="form-group">
+                        <label for="quote">Descreva sua anotação.</label>
+                        <textarea type="text" rows="5"  name='body' id="body" class="form-control" id="quote" placeholder="Anote aqui..."></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-secondary">Arquivar</button>
+                    </div>
+                </form>
+            -->
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+@endsection

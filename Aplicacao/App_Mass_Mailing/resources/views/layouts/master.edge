@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mass Mailing</title>
+    {{ style('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css') }}
+    {{ style('style') }}
+    {{ script('https://code.jquery.com/jquery-3.3.1.slim.min.js') }}
+    {{ script('https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js')}}
+</head>
+<body>
+    <div class="background">
+        <div class="container-fliud">
+            @include('navbar')
+            @!section('content')
+        </div>
+        {{ script('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js') }}
+    </div>
+</body>
+</html>
+
+
+<script type="text/javascript" language="javascript">
+    setTimeout(() => {
+            $('#alerta').alert('close');
+    }, 3000); //depois de 3 segundos
+</script>
+
+
+<script type='text/javascript'>
+    $(document).ready(function(){
+        $("#tabela").tablesorter({
+            sortList: [[0,0]]
+        });
+    });
+</script>
