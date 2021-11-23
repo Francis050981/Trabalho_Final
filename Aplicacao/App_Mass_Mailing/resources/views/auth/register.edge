@@ -14,14 +14,19 @@
                 {{ elIf('<span class=text-danger>$self</span>', getErrorFor('name'), hasErrorFor('name')) }}
               </div>
               <div class="form-group">
+                <label for="pasword">Senha MassMailing</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Defina uma senha">
+                {{ elIf('<span class=text-danger>$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+              </div>
+              <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email"  name="email" value="{{old('email','')}}" placeholder="Digite seu email">
                 {{ elIf('<span class=text-danger>$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
               </div>
               <div class="form-group">
-                <label for="pasword">Senha</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Defina uma senha">
-                {{ elIf('<span class=text-danger>$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+                <label for="pasword">Senha e-mail</label>
+                <input type="password" class="form-control" id="passwordMail" name="passwordMail" placeholder="Digite a senha de seu e-mail">
+                {{ elIf('<span class=text-danger>$self</span>', getErrorFor('passwordMail'), hasErrorFor('passwordMail')) }}
               </div>
               <div class="text-center">
                   <button type="submit" class="btn btn-dark btn-sm">Salvar usuário</button>

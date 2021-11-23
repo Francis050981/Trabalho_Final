@@ -1,14 +1,7 @@
 'use strict'
 
-//import jwt_decode from "jwt-decode";
-//import { base64 } from '@ioc:Adonis/Core/Helpers';
-
-const MsgEmail = use('App/Models/MsgEmail')
-const nodemailer = require('nodemailer') 
-//const jwt_decode = require('jwt_decode') 
-
-
-//https://support.google.com/a/answer/176600?hl=pt#zippy=%2Cusar-o-servidor-smtp-do-gmail
+const MsgEmail = use('App/Models/MsgEmail');
+const nodemailer = require('nodemailer');
 
 class MsgEmailController {
 
@@ -25,7 +18,14 @@ class MsgEmailController {
 
     async enviaEmail ({ view }) {
         const Mensagem = await MsgEmail.all()
-        return view.render('Mensagens.envia-email',{
+        return view.render('EnvioEmail.envia-email',{
+            Mensagens: Mensagem.toJSON()
+        })
+    }
+
+    async configEmail ({ view }) {
+        const Mensagem = await MsgEmail.all()
+        return view.render('EnvioEmail.config-email',{
             Mensagens: Mensagem.toJSON()
         })
     }
@@ -111,19 +111,24 @@ class MsgEmailController {
             },
         });
 
-        let info = await transporter.sendMail({
-            from: recebeUserMail, // sender address
-            to: recebeDestinoMail, // list of receivers
-            subject: recebeAssunto, // Subject line
-            replyTo: recebeRespMail,
-            text: recebeBody, // plain text body
-            //html: "<b>Hello world?</b>", // html body
-        });
-        session.flash({'successmessage': 'E-mail enviado!'})
+        const fs = require('fs');
+        let rawdata = fs.readFileSync('public/baseContatos/baseContatos.json');
+        let json = JSON.parse(rawdata);
+
+        for(var i=0;i< json.length; i++){
+            let info = await transporter.sendMail({
+                from: recebeUserMail, // sender address
+                //to: recebeDestinoMail, // list of receivers
+                to: json[i].email,
+                subject: recebeAssunto, // Subject line
+                replyTo: recebeRespMail,
+                text: recebeBody, // plain text body
+                //html: "<b>Hello world?</b>", // html body
+            });
+        }
+        session.flash({'successmessage': 'Grupo de e-mails enviado!'})
         return response.redirect('/')
     }
-    //send().catch(console.error);
-
 }
 
 module.exports = MsgEmailController

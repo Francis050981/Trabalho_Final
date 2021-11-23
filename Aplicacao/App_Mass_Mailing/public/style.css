@@ -23,11 +23,73 @@ img{
   width: 50px;
 }
 .tamanhoIconeAcao{
+  
   width: 30px;
+}
+
+.tamanhoIconeAcao2{
+  width: 25px;
+}
+
+.tamanhoicone{
+  width: 20px;
+}
+
+.colunaA{
+  display: inline-block;
+  width: 90px;
+}
+
+.colunaB{
+  display: inline-block;
+  width: 100px;
+}
+
+.colunaC{
+  display: inline-block;
+  width: 210px;
+}
+
+.colunaD{
+  display: inline-block;
+  width: 80px;
+}
+
+
+.c{
+  font-size: 12px;
+  padding-top: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.espaco{
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 15px;
+  font-size: 12px;
+}
+
+.d{
+  font-size: 10px;
+  text-align: left;
 }
 
 .tamanhoSpan{
   font-size: 12px;
+}
+
+.c1{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.c2{
+  font-size: 12px;
+}
+
+.fundocard{
+  background-color: cornsilk;
 }
 
 /*
@@ -167,6 +229,14 @@ body {
   color: #f2ebeb;
 }
 
+.navbar-nav > li > .dropdown-menu > form > a:hover {     
+  background-color: rgba(0, 0, 0, 0.8); 
+  color: #f2ebeb;
+}
+#opcional{
+  font-size: 12px;
+  color: red;
+}
 .bt2{
   margin-right: 20px;
 }
@@ -214,6 +284,16 @@ table{
   width: 100%;
 }
 
+.largdown{
+  width: 100%;
+  border-style: solid;
+  border-width: 0.1em;
+  border-radius: 5px;
+  border-color: rgb(187, 188, 189);
+  padding: 5px;
+
+}
+
 tr{
   display: block;
   height: 35px;
@@ -242,10 +322,19 @@ tr:hover{
   width: 100px;
 }
 
+.btn-lag2{
+  width: 120px;
+}
+
+.btn-lag3{
+  width: 150px;
+}
 .btn-larg-nav{
   width: 134px;
 }
-
+.tamanhoLogo2{
+  width: 30px;
+}
 
 #olho{
   align-items: center;
@@ -261,3 +350,5 @@ tr:hover{
 .form-check{
   width: 150px;
 }
+
+

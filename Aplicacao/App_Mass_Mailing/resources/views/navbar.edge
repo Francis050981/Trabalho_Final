@@ -26,7 +26,7 @@
             <ul class="navbar-nav">
                 <li class="bt2">
                     <div class="text-right">
-                            <a href="{{route('create.quote')}}" class="btn btn-light btn-larg-nav btn-sm">Upload</a>
+                            <a href="{{route('create.upload')}}" class="btn btn-light btn-larg-nav btn-sm">Upload</a>
                     </div>
                 </li>
                 <li class="bt2">
@@ -37,7 +37,7 @@
                 </li>
                 <li class="bt2">
                     <div class="text-right">
-                            <a href="{{route('create.quote')}}" class="btn btn-light btn-larg-nav btn-sm">Envio WhatsApp</a>
+                            <a href="{{route('envia.envia-whats')}}" class="btn btn-light btn-larg-nav btn-sm">Envio WhatsApp</a>
                     </div>
                 </li>
                 <li class="bt2">
@@ -54,7 +54,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <form method="POST" action="{{route('logout')}}">
                             {{ csrfField() }}
-                              <button  type="submit" class="dropdown-item btnexc" href="">Sair</button>
+                            <a href="{{route('config.config-email')}}" class="dropdown-item btnexc" >Config</a>
+                            <button  type="submit" class="dropdown-item btnexc" href="">Sair</button>
                         </form>
                     </div>
                 </li>

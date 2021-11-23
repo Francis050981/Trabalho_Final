@@ -17,8 +17,10 @@ class AuthController {
     async postRegister({ request, session, response }) {
         const user = await User.create({
             username: request.input('name'),
+            password: request.input('password'),
             email: request.input('email'),
-            password: request.input('password')
+            passwordMail: request.input('passwordMail')
+
         })
         session.flash({ successmessage: 'Usuário incluído com sucesso!'})
         //return response.route('login.create');

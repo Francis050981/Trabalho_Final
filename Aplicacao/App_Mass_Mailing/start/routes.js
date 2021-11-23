@@ -24,22 +24,16 @@ Route.on('/').render('welcome')
 const Route = use('Route')
 const nodemailer = require('nodemailer') 
 
-Route.get('/','QuoteController.index').as('index')
+Route.get('/','MsgEmailController.index').as('index')
 Route.get('/register','AuthController.registrationView').as('register.create')
 Route.post('/register-store','AuthController.postRegister').as('register.store').validator('Register')
 Route.get('/login','AuthController.loginView').as('login.create')
 Route.post('/login-store','AuthController.postLogin').as('login.store')
-Route.get('/view-quote/:id','QuoteController.show').as('view.quote')
 Route.get('/view-msg-email/:id','MsgEmailController.show').as('view.Mensagem')
 Route.get('/view-msg-whats/:id','MsgWhatController.show').as('view.Whats')
 
 
 Route.group(() => {
-    Route.get('/create-quote','QuoteController.create').as('create.quote')
-    Route.post('/store-quote','QuoteController.store').as('store.quote')
-    Route.get('/edit-quote/:id','QuoteController.edit').as('edit.quote')
-    Route.post('/update-quote/:id','QuoteController.update').as('update.quote')
-    Route.get('/delete-quote/:id','QuoteController.destroy').as('delete.quote')
 
     Route.get('/create-msg-email','MsgEmailController.create').as('create.msg-email')
     Route.post('/store-msg-email','MsgEmailController.store').as('store.msg-email')
@@ -49,6 +43,7 @@ Route.group(() => {
     Route.post('/update-msg-email/:id','MsgEmailController.update').as('update.msg-email')
     Route.get('/delete-msg-email/:id','MsgEmailController.destroy').as('delete.msg-email')
     Route.get('/envia-email','MsgEmailController.enviaEmail').as('envia.envia-email')
+    Route.get('/config-email','MsgEmailController.configEmail').as('config.config-email')
     Route.post('/envia-email2','MsgEmailController.send').as('envia.send')
 
     Route.post('/store-msg-whats','MsgWhatController.store').as('store.msg-whats')
@@ -57,6 +52,15 @@ Route.group(() => {
     Route.get('/edit-msg-whats-confirma/:id','MsgWhatController.confirm').as('confirma.msg-whats')
     Route.post('/update-msg-whats/:id','MsgWhatController.update').as('update.msg-whats')
     Route.get('/delete-msg-whats/:id','MsgWhatController.destroy').as('delete.msg-whats')
+    Route.get('/envia-whats','MsgWhatController.enviaWhats').as('envia.envia-whats')
+    Route.post('/whatsWeb','MsgWhatController.whatsWeb').as('envia.whatsWeb')
+
+    Route.get('/create-upload','UploadController.create').as('create.upload')
+    Route.post('/store-upload','UploadController.store').as('store.upload')
+    Route.get('/mostraDados-upload','UploadController.mostraDados').as('mostraDados.upload')
+    Route.get('/mostraDados2-upload','UploadController.mostraDados2').as('mostraDados2.upload')
+    Route.get('/mostraDados3-upload','UploadController.mostraDados3').as('mostraDados3.upload')
+    Route.get('/mostraDados4-upload','UploadController.mostraDados4').as('mostraDados4.upload')
 
     Route.post('/logout','AuthController.logout').as('logout')
 

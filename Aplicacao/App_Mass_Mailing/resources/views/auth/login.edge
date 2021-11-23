@@ -2,10 +2,10 @@
 @section('content')
   <div class="container">
     <div class="row">
-      <div class="col-md-4 shadow bg-white mt-5 rounded offset-md-4">
-        <div class="float-right">
-          <a  class="x2" href="/">x</a>
-        </div>
+      <div class="col-md-4 shadow bg-white mt-5 rounded p-3 offset-md-4">
+      <!--<div class="col-md-6 shadow bg-white mt-5 rounded p-3 offset-md-3">-->
+        <div class="float-right"><a class="x2" href="/">x</a></div>
+        <div class="clear-fix"></div>
         <form method="POST" action="{{route('login.store')}}">
           {{ csrfField() }}
             <div>

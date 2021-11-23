@@ -1,0 +1,340 @@
+@layout('layouts/master')
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3 offset-md-3">
+            <div class="float-right"><a class="x2" href="/">x</a></div>
+            <div class="clear-fix"></div>
+            <form method="POST" action="{{route('envia.send')}}" onfocus = radio() oninput= radio()>
+                {{ csrfField() }}  
+                <div class="">
+                <div class="form-group"><span class="tituloTela">
+                    <img src="/imgEmail.png" alt="Imagem Email">
+                    Envio de e-mail</span></div>
+                </div>
+
+                <div class="form-group">
+                  <div class="card fundocard">
+                      <div class="card-body">
+                          <h5 class="c1 card-title">E-mail de envio: {{ auth.user.email}}</h5>
+                          <p class="c2 card-text">Para alterar acesse: Menu Superior > Usuário Logado > Config</p>
+                      </div>
+                  </div>
+                </div>
+                <span id="span100"></span>
+
+
+                <div id="divRadio" class="form-group" name="radios">
+                    <p>Escolha seu servidor de envio: </p>
+                    <div class="inline">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="op01" checked>
+                        <label class="form-check-label" for="op01">
+                          Gmail
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="op02">
+                        <label class="form-check-label" for="op02">
+                          Yahoo
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="op03">
+                        <label class="form-check-label" for="op03">
+                          Hotmail
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="op04">
+                        <label class="form-check-label" for="op04">
+                          Bol
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="op05">
+                        <label class="form-check-label" for="op05">
+                          Outro
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  
+                    <div id="divRemetente" class="form-group">                        
+                        <label for="remetente">E-mail (Remetente):</label>
+                        <input type="text" name="remetente" value = "{{ auth.user.email}}" id="remetente" class="form-control" placeholder="Digite o e-mail de envio" onkeyup= apaga_msg()>
+                        <span id="demo"></span>
+                    </div>
+
+                    <div id="divSenha" class="form-group">                        
+                        <label for="senha">Senha e-mail:</label>
+                        <div class="inline">
+                        <input type="password" name="senha" value = "{{ auth.user.passwordMail}}" id="senha" class="form-control" placeholder="Digite a senha" onkeyup= apaga_msg()>
+                        <img id="olho" src="/olhoSenha.png">
+                        </div>
+                        <span id="demo2"></span>
+                    </div>
+
+                    <div id="divSmtp" class="form-group">                        
+                        <label for="smtp">Servidor SMTP:</label>
+                        <input type="text" name="smtp" id="smtp" class="form-control" placeholder="Digite o servidor SMTP" onkeyup= apaga_msg()>
+                        <span id="demo3"></span>
+                    </div>
+
+                    <div id="divPorta" class="form-group">                       
+                        <label for="porta">Porta (Servidor):</label>
+                        <input type="text" name="porta" id="porta" class="form-control" placeholder="Digite o n da porta do servidor" onkeyup= apaga_msg()>
+                        <span id="demo4"></span>
+                    </div>
+                    <!--
+                    <div class="form-group">                        
+                        <label for="destinatario">Destinatário (E-mail):</label>
+                        <input type="text" name="destinatario" id="destinatario" class="form-control" placeholder="Digite e-mail do destinatário" onkeyup= apaga_msg()>
+                        <span id="demo5"></span>
+                    </div>
+                    -->
+                    <div class="form-group">                        
+                        <label for="retornarPara">Responder para (E-mail de retorno):</label>
+                        <span id="opcional">*Opcional</span>
+                        <input type="text" name="retornarPara"  id="retornarPara" class="form-control" placeholder="Digite e-mail de retorno">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Use um modelo de mensagem salvo:</label>
+                      <select class="form-control" id="exampleFormControlSelect1" oninput= atualizacampo()>
+                        <option hidden>Selecione...</option>
+                        <option>
+                          @each( mensagem in Mensagens)
+                            <option id="option" value="{{mensagem.msg_email}}">{{mensagem.titulo_msg_email}}</option>
+                          @endeach
+                        </option>
+                      </select>
+                    </div>
+                    <div>
+                  </div>
+                    <div class="form-group">                        
+                        <label for="assunto">Assunto:</label>
+                        <input type="text" name="assunto" id="assunto" class="form-control" placeholder="Digite o assunto" onkeyup= apaga_msg()>
+                        <span id="demo6"></span>
+                    </div>       
+                    <div class="form-group">
+                        <label for="corpo">Mensagem:</label>
+                        <textarea type="text" rows="5" name="corpo" id="corpo"  class="form-control" placeholder="Defina a mensagem para o envio..." onkeyup= apaga_msg()></textarea>
+                        <span id="demo7"></span>
+                    </div>
+                    <div class="text-center">
+                    <a href="{{route('mostraDados3.upload')}}" class="btn btn-dark btn-lag3 btn-sm" >Visualiza Contatos</a>  
+                    <button type="submit" class= "btn btn-dark btn-lag3 btn-sm" onclick= valida_form2()>Enviar</button>
+                    <div class="text-center">
+                    <span id="demo100"></span>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" language="javascript">
+
+window.onload = function(){
+    //document.getElementById("span100").innerHTML = 'Aqui';
+    document.getElementById("divRadio").style.display = 'none';
+    document.getElementById("divRemetente").style.display = 'none';
+    document.getElementById("divSenha").style.display = 'none';
+    document.getElementById("divSmtp").style.display = 'none';
+    document.getElementById("divPorta").style.display = 'none';
+};
+
+
+
+
+    //document.getElementById("op01").checked = true;
+    //radio();
+    //document.getElementById("assunto").value = "";
+    //document.getElementById("remetente").disabled = true;
+    //document.getElementById("radios").disabled = true;
+    //document.getElementById("radios").style.visibility= 'hidden';
+    //document.getElementById("radios").style.display = 'none';
+    //document.getElementById("divRadio").style.visibility= 'hidden';
+    //document.getElementById("divRemetente").style.visibility= 'hidden';
+    //document.getElementById("divSenha").style.visibility= 'hidden';
+    //document.getElementById("divSmtp").style.visibility= 'hidden';
+    //document.getElementById("divPorta").style.visibility= 'hidden';
+    /*
+    document.getElementById("senha").value = '{{ auth.user.passwordMail}}';
+    document.getElementById("smtp").value = "smtp.gmail.com";
+    document.getElementById("porta").value = "587";
+    */
+
+
+function radio(){
+  if (document.getElementById("op01").checked){
+      document.getElementById("smtp").value = "smtp.gmail.com";
+      document.getElementById("porta").value = "587";
+  }
+  else{
+      if (document.getElementById("op02").checked){
+          document.getElementById("smtp").value = "smtp.mail.yahoo.com";
+          document.getElementById("porta").value = "465";
+      }
+      else{
+        if (document.getElementById("op03").checked){
+          document.getElementById("smtp").value = "smtp.live.com";
+          document.getElementById("porta").value = "465";
+
+        }
+        else{
+          if((document.getElementById("op04").checked)){
+            document.getElementById("smtp").value = "smtps.bol.com.br";
+            document.getElementById("porta").value = "587";
+          }
+          else{
+            if((document.getElementById("op05").checked)){
+            document.getElementById("op05").checked = false;
+            document.getElementById("smtp").focus();
+            document.getElementById("smtp").value = "";
+            document.getElementById("porta").value = "";
+          }
+        }
+      }
+    }
+  }
+  return false;
+}
+
+var senha = $('#senha');
+var olho= $("#olho");
+
+//olho.mousedown(function() {
+olho.mouseover(function() {
+  senha.attr("type", "text");
+});
+
+//olho.mouseup(function() {
+olho.mouseup(function() {
+  senha.attr("type", "password");
+});
+// para evitar o problema de arrastar a imagem e a senha continuar exposta, 
+//citada pelo nosso amigo nos comentários
+$( "#olho" ).mouseout(function() { 
+  $("#senha").attr("type", "password");
+});
+
+//#####################################
+
+document.getElementById("exampleFormControlSelect1").remove(1);
+document.getElementById("exampleFormControlSelect1").selectedIndex = 0;
+
+
+function ordenarSelect(id_componente)
+  {
+    var selectToSort = jQuery('#' + id_componente);
+    var optionActual = selectToSort.val();
+    selectToSort.html(selectToSort.children('option').sort(function (a, b) {
+      return a.text === b.text ? 0 : a.text < b.text ? -1 : 1;
+    })).val(optionActual);
+  }
+  $(document).ready(function () {
+    ordenarSelect('exampleFormControlSelect1');
+  });
+
+  function atualizacampo(){
+    //var passavalor = document.getElementById("exampleFormControlSelect1").selected.innerText;
+    
+    var select = document.getElementById('exampleFormControlSelect1');
+	  var text = select.options[select.selectedIndex].text;
+    document.getElementById("assunto").value = text;
+
+    var value = select.options[select.selectedIndex].value;
+    //document.getElementById("demo100").innerHTML = value;
+    document.getElementById("corpo").innerHTML = value;
+    return false;
+  }
+
+  
+  function valida_form2(){  
+    if(document.getElementById("assunto").value.length < 1){
+    event.preventDefault()
+    document.getElementById("assunto").focus();
+    document.getElementById("demo6").innerHTML= "O assunto é obrigatorio!";
+    document.getElementById ("demo6").style.color = '#FF0000';
+  }else{
+    document.getElementById("demo6").innerHTML= "";
+    if(document.getElementById("corpo").value.length < 1){
+    event.preventDefault()
+    document.getElementById("corpo").focus();
+    document.getElementById("demo7").innerHTML= "A mensagem é obrigatorio!";
+    document.getElementById ("demo7").style.color = '#FF0000';
+  }else{
+    document.getElementById("demo7").innerHTML= "";
+  }}
+    return false;
+  }
+  
+
+
+
+
+
+  function valida_form (){
+  if(document.getElementById("remetente").value.length < 1){
+  //apaga_msg();
+  event.preventDefault()
+  document.getElementById("remetente").focus();
+  document.getElementById("demo").innerHTML= "O remetente é obrigatorio!";
+  document.getElementById ("demo").style.color = '#FF0000';
+  }
+  else{
+      if(document.getElementById("senha").value.length < 1){
+      //apaga_msg();
+      event.preventDefault()
+      document.getElementById("senha").focus();
+      document.getElementById("demo2").innerHTML= "A senha é obrigatoria!";
+      document.getElementById ("demo2").style.color = '#FF0000';
+      }
+  else{
+        if(document.getElementById("smtp").value.length < 1){
+        //apaga_msg();
+        event.preventDefault()
+        document.getElementById("smtp").focus();
+        document.getElementById("demo3").innerHTML= "Configuração smtp é obrigatoria!";
+        document.getElementById ("demo3").style.color = '#FF0000';
+        }
+  else{
+        if(document.getElementById("porta").value.length < 1){
+        //apaga_msg();
+        event.preventDefault()
+        document.getElementById("porta").focus();
+        document.getElementById("demo4").innerHTML= "Porta smtp é obrigatoria!";
+        document.getElementById ("demo4").style.color = '#FF0000';
+        }
+  else{
+      if(document.getElementById("assunto").value.length < 1){
+      //apaga_msg();
+      event.preventDefault()
+      document.getElementById("assunto").focus();
+      document.getElementById("demo6").innerHTML= "Assunto é obrigatorio!";
+      document.getElementById ("demo6").style.color = '#FF0000';
+      }
+  else{
+      if(document.getElementById("corpo").value.length < 1){
+      //apaga_msg();
+      event.preventDefault()
+      document.getElementById("corpo").focus();
+      document.getElementById("demo7").innerHTML= "Mensagem é obrigatoria!";
+      document.getElementById ("demo7").style.color = '#FF0000';
+      }}}}}}/*}*/
+  return false;
+}
+
+function apaga_msg(){
+    document.getElementById("demo").innerHTML= "";
+    document.getElementById("demo2").innerHTML= "";
+    document.getElementById("demo3").innerHTML= "";
+    document.getElementById("demo4").innerHTML= "";
+    document.getElementById("demo5").innerHTML= "";
+    document.getElementById("demo6").innerHTML= "";
+    document.getElementById("demo7").innerHTML= "";
+    return false;
+}
+
+
+</script>
+@endsection

@@ -1,0 +1,100 @@
+@layout('layouts/master')
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3">
+            <div class="float-right"><a class="x2" href="/">x</a></div>
+            <div class="clear-fix"></div>
+            <!--<div class="form-group"></div>-->
+            <form id="form" method="POST" action="{{route('envia.whatsWeb')}}">
+            {{ csrfField() }}
+                <div class="form-group"><span class="tituloTela">
+                    <img src="/imgWhats.png" alt="Imagem Email">
+                    Envio de Whats</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Use um modelo de mensagem salvo:</label>
+                    <select class="form-control" id="exampleFormControlSelect1" oninput= atualizacampo()>
+                        <option hidden>Selecione...</option>
+                        <option>
+                        @each( mensagem in Mensagens)
+                            <option id="option" value="{{mensagem.msg_txt_whats}}">{{mensagem.titulo_msg_whats}}</option>
+                        @endeach
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="corpo">Mensagem:</label>
+                    <textarea type="text" rows="5" name="corpo" id="corpo"  class="form-control" placeholder="Defina a mensagem para o envio..." onkeyup= apaga_msg()></textarea>
+                    <span id="demo"></span>
+                </div>
+
+                <div class="form-group text-center">
+                    <a href="{{route('mostraDados2.upload')}}" class="btn btn-dark  btn-sm">Visualiza Contatos</a>
+                    <button type="submit" class= "btn btn-dark btn-sm" onclick=valida_form()>Logar WhatsApp</button>
+                    <!--<a href="/whatsWeb" class="btn btn-dark btn-lag btn-sm">Logar QRCode</a>-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" language="javascript">
+
+document.getElementById("exampleFormControlSelect1").remove(1);
+document.getElementById("exampleFormControlSelect1").selectedIndex = 0;
+
+function ordenarSelect(id_componente)
+  {
+    var selectToSort = jQuery('#' + id_componente);
+    var optionActual = selectToSort.val();
+    selectToSort.html(selectToSort.children('option').sort(function (a, b) {
+      return a.text === b.text ? 0 : a.text < b.text ? -1 : 1;
+    })).val(optionActual);
+  }
+  $(document).ready(function () {
+    ordenarSelect('exampleFormControlSelect1');
+  });
+
+  function atualizacampo(){
+    //var passavalor = document.getElementById("exampleFormControlSelect1").selected.innerText;
+    
+    var select = document.getElementById('exampleFormControlSelect1');
+	  var text = select.options[select.selectedIndex].text;
+      var value = select.options[select.selectedIndex].value;
+    //document.getElementById("corpo").value = text;
+    document.getElementById("corpo").innerHTML = value;
+
+    //var value = select.options[select.selectedIndex].value;
+    //document.getElementById("corpo").innerHTML = value;
+    return false;
+  }
+
+  function submete(){
+    document.getElementById("form").submit();
+  }
+
+  function valida_form(){
+  if(document.getElementById("corpo").value.length < 1){
+  event.preventDefault()
+  document.getElementById("corpo").focus();
+  document.getElementById("demo").innerHTML= "A mensagem é obrigatoria!";
+  document.getElementById ("demo").style.color = '#FF0000';
+  }else{
+    document.getElementById("demo").innerHTML= "";
+  }
+  return false;
+}
+
+document.getElementById("corpo").onchange = apaga_msg();
+
+function apaga_msg(){
+    document.getElementById("demo").innerHTML= "";
+}
+
+
+</script>
+@endsection
